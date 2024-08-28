@@ -19,7 +19,7 @@ const App = () => {
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries(['anecdotes']);
-      dispatch({ type: 'SET_NOTIFICATION', payload: `Your vote added!` });
+      dispatch({ type: 'SET_NOTIFICATION', payload: `You voted added!` });
       setTimeout(() => {
         dispatch({ type: 'CLEAR_NOTIFICATION' });
       }, 5000);

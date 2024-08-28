@@ -4,10 +4,8 @@ import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 import {getAnecdotes, voteAnecdote} from './service'
 import { NotificationProvider } from './components/NotificationContext';
-import { useNotification } from '../components/NotificationContext';
 const App = () => {
   const queryClient = useQueryClient();
-  const { dispatch } = useNotification();
   const { data, error, isLoading } = useQuery({
     queryKey: ['anecdotes'],
     queryFn: getAnecdotes,
@@ -19,10 +17,6 @@ const App = () => {
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries(['anecdotes']);
-      dispatch({ type: 'SET_NOTIFICATION', payload: `Your vote added!` });
-      setTimeout(() => {
-        dispatch({ type: 'CLEAR_NOTIFICATION' });
-      }, 5000);
     },
   });
 
